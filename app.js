@@ -1,11 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 // routes
 const userRoutes = require("./routes/user");
 
 // app
 const app = express();
+
+// middlewares
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 //db
 mongoose
