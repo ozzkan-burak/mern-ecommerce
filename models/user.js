@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const cyrpto = require("cyrpto");
-const uuidv1 = require("uuid/v1");
+const crypto = require("crypto");
+const uuidv1 = require("uuidv1");
 
 const userSchema = new mongoose.Schema(
   {
@@ -37,8 +37,7 @@ const userSchema = new mongoose.Schema(
   { timeStamps: true }
 );
 
-userSchema
-  .virtual("passowrd")
+userSchema.virtual("password")
   .set(function (password) {
     this._password = password;
     this.salt = uuidv1();
@@ -61,4 +60,4 @@ userSchema.methods = {
   }
 }
 
-module.export = mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema)
